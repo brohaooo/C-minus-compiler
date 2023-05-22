@@ -22,9 +22,11 @@ which is written in python. (also, writing in C++ is not easy)
 The dockerfile is given, illustrated the required environment (c++, python3.7),
 you can compile it either in windows (run run_compiler.bat) or in linux (run Makefile)
 then use the command
+
   ./run_compiler.bat \$testfile
   or
   ./run_compiler.sh \$testfile
+  
 to see the result. The result MIPS codes are also store in the output.txt file.
 
 ## some issues
