@@ -1,0 +1,172 @@
+S
+    : program 
+    ;
+
+program
+    : external_declarations statement_list
+    ;
+
+external_declarations
+    : declaration external_declarations
+    | '$'
+    ;
+
+statement_list
+    : statement statement_list
+    | '$'
+    ;
+
+operator_1
+    | MUL_OP
+    | DIV_OP
+    ;
+
+operator_2
+    : PLUS
+    | MINUS
+    ;
+
+operator_3
+    | SHL_OP
+    | SHR_OP
+    ;
+
+operator_4
+    | LT
+    | GT
+    | LTEQ
+    | GTEQ
+    | EQ
+    | NOTEQ
+    ;
+
+operator_5
+    | AND_OP
+    | OR_OP
+    ;
+
+operator_6
+    | ANDAND
+    | OROR
+    ;
+
+primary_expression
+    : ID
+    | INT_NUM
+    | LPAR expression RPAR
+    | ID LSQUARE primary_expression RSQUARE
+    ;
+
+expression
+    : logic_expression
+    ;
+
+logic_expression
+    | logic_expression operator_6 bit_expression
+    | bit_expression
+    ;
+
+bit_expression
+    | bit_expression operator_5 cmp_expression
+    | NOT_OP cmp_expression
+    | cmp_expression
+    ;
+
+cmp_expression
+    | cmp_expression operator_4 shi_expression
+    | shi_expression
+    ;
+
+shi_expression
+    | shi_expression operator_3 add_expression
+    | add_expression
+    ;
+
+add_expression
+    | add_expression operator_2 mul_expression
+    | MINUS mul_expression
+    | mul_expression
+    ;
+
+mul_expression
+    | mul_expression operator_1 primary_expression
+    | primary_expression
+    ;
+
+assignment_operator
+    : ASSIGN
+    ;
+
+assignment_statement
+    :ID assignment_operator expression SEMI
+    |ID LSQUARE expression RSQUARE assignment_operator expression SEMI
+    ;
+
+type_specifier
+    : INT
+    ;
+
+declaration_assign
+    : ASSIGN expression
+    | '$'
+    ;
+
+declaration_init
+    : ID declaration_assign
+    | ID LSQUARE INT_NUM RSQUARE
+    ;
+
+declaration_init_list
+    : COMMA declaration_init declaration_init_list
+    | '$'
+    ;
+
+declaration
+    : type_specifier declaration_init declaration_init_list SEMI
+    ;
+
+statement
+    : assignment_statement
+    : jump_statement
+    : if_statement
+    : iteration_statement
+    : LBRACE statement_list RBRACE
+    : read_statement
+    | write_statement
+    | return_statement
+    ;
+
+single_statement
+    : assignment_statement
+    : jump_statement
+    : read_statement
+    | write_statement
+    | return_statement
+    : LBRACE statement_list RBRACE
+    ;
+
+read_statement
+    : READ LPAR ID RPAR SEMI
+    ;
+
+write_statement
+    : WRITE LPAR expression RPAR SEMI
+    ;
+
+jump_statement
+    | BREAK SEMI
+    ;
+
+return_statement
+    : RETURN SEMI
+    ;
+
+if_statement
+    : IF LPAR expression RPAR single_statement ELSE single_statement
+    | IF LPAR expression RPAR single_statement
+    ;
+
+iteration_statement
+    : WHILE LPAR expression RPAR statement
+    | DO statement WHILE LPAR expression RPAR SEMI
+    ;
