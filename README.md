@@ -25,7 +25,7 @@ then use the command
   ./run_compiler.bat \$testfile
   or
   ./run_compiler.sh \$testfile
-to see the result.
+to see the result. The result MIPS codes are also store in the output.txt file.
 
 ## some issues
 This c-compiler is extremely inefficient because it will store all the temporary values (during expression calculation process) on the stack
