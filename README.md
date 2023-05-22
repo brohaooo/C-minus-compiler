@@ -31,7 +31,7 @@ to see the result. The result MIPS codes are also store in the output.txt file.
 
 ## some issues
 This c-compiler is extremely inefficient because it will store all the temporary values (during expression calculation process) on the stack
-instead of using registers. But it works fine and gets rid of the register-allocation problem (e.g., run out of registers in exp+(exp+(exp+...))) case)
+instead of using registers. But it works fine and gets rid of the register-allocation problem (e.g., run out of registers in exp+(exp+(exp+...))) case).
 To do that, I manually set up \$FP and \$SP at the beginning of the MIPS program.
 
 ## final score:
